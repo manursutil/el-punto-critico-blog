@@ -1,4 +1,3 @@
-import { fullBlog } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
