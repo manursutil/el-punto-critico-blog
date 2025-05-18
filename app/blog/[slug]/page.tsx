@@ -4,6 +4,8 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import { Metadata } from "next";
 
+export const revalidate = 30; // revalidate at most every 30 seconds
+
 type Props = {
   params: { slug: string };
 };
