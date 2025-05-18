@@ -2,9 +2,19 @@ import { client, urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
+import { Metadata } from "next";
 
-// ✅ Next.js App Router: don't type manually, let Next.js inject params
-export default async function Page({ params }: { params: { slug: string } }) {
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: decodeURIComponent(params.slug),
+  };
+}
+
+export default async function Page({ params }: Props) {
   const query = `
     *[_type == "blog" && slug.current == '${params.slug}'] {
       "currentSlug": slug.current,
