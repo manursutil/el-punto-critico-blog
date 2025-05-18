@@ -13,7 +13,8 @@ async function getData(slug: string) {
       titleImage,
       _createdAt
     }[0]`;
-  const data = (await client.fetch(query)) as fullBlog;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const data = (await client.fetch(query)) as any;
   return data;
 }
 
