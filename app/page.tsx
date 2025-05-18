@@ -36,19 +36,20 @@ export default async function Home() {
               alt={post.title}
               width={120}
               height={120}
+              quality={90}
               className="h-full w-[120px] rounded-md object-cover"
             />
 
             <div className="flex flex-col justify-between h-full overflow-hidden font-[Georgia]">
               <div>
-                <h2 className="text-xl font-semibold mb-1 truncate">
+                <h2 className="text-2xl font-semibold mb-1 truncate">
                   {post.title}
                 </h2>
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="text-lg text-muted-foreground line-clamp-2">
                   {post.SmallDescription}
                 </p>
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
+              <p className="text-sm text-muted-foreground mt-2">
                 Escrito por:{" "}
                 <span className="font-semibold">Manuel Rodríguez</span>
                 <br />
