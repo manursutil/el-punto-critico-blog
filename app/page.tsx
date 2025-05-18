@@ -32,10 +32,10 @@ export default async function Home() {
             className="flex h-[160px] w-full flex-row items-center gap-4 rounded-xl bg-card p-4 text-card-foreground shadow-md border-none outline-none focus-visible:ring-transparent focus-visible:outline-none"
           >
             <Image
-              src={urlFor(post.titleImage).url()}
+              src={urlFor(post.titleImage).width(1200).url()}
               alt={post.title}
-              width={120}
-              height={120}
+              width={1200}
+              height={800}
               quality={90}
               className="h-full w-[120px] rounded-md object-cover"
             />
