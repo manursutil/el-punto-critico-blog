@@ -3,11 +3,12 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
-type BlogPageProps = {
+// ✅ Use "PageProps" type for dynamic routes
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
 async function getData(slug: string) {
   const query = `
@@ -18,14 +19,12 @@ async function getData(slug: string) {
       titleImage,
       _createdAt
     }[0]`;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const data = (await client.fetch(query)) as any;
+
+  const data = await client.fetch(query);
   return data;
 }
 
-export default async function BlogArticle({
-  params,
-}: BlogPageProps): Promise<JSX.Element> {
+export default async function Page({ params }: PageProps) {
   const data = await getData(params.slug);
 
   return (
