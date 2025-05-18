@@ -13,7 +13,7 @@ async function getData(slug: string) {
       titleImage,
       _createdAt
     }[0]`;
-  const data = await client.fetch(query);
+  const data = (await client.fetch(query)) as fullBlog;
   return data;
 }
 
