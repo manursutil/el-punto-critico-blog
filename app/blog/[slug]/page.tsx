@@ -53,7 +53,7 @@ export default async function Page({ params }: Props) {
           ← Volver
         </Link>
 
-        <article className="prose prose-invert prose-xl max-w-none space-y-6">
+        <article className="prose prose-invert prose-2xl max-w-none space-y-6">
           <PortableText value={data.content} />
         </article>
       </div>
