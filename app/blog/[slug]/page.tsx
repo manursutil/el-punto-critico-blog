@@ -3,16 +3,10 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
-// ✅ Use "PageProps" type for dynamic routes
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-async function getData(slug: string) {
+// ✅ Next.js App Router: don't type manually, let Next.js inject params
+export default async function Page({ params }: { params: { slug: string } }) {
   const query = `
-    *[_type == "blog" && slug.current == '${slug}'] {
+    *[_type == "blog" && slug.current == '${params.slug}'] {
       "currentSlug": slug.current,
       title,
       content,
@@ -21,15 +15,9 @@ async function getData(slug: string) {
     }[0]`;
 
   const data = await client.fetch(query);
-  return data;
-}
-
-export default async function Page({ params }: PageProps) {
-  const data = await getData(params.slug);
 
   return (
     <main className="bg-background text-foreground font-serif">
-      {/* Hero Image */}
       <div className="relative w-full h-[60vh]">
         <Image
           src={urlFor(data.titleImage).width(1600).url()}
@@ -38,7 +26,6 @@ export default async function Page({ params }: PageProps) {
           priority
           className="object-cover"
         />
-        {/* Overlay Title */}
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 px-4">
           <h1 className="text-white text-3xl md:text-5xl text-center font-bold">
             {data.title}
@@ -46,9 +33,7 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Content Container */}
       <div className="max-w-4xl mx-auto px-3 py-12">
-        {/* Back button */}
         <Link
           href="/"
           className="mb-8 inline-block text-sm text-muted-foreground hover:underline"
@@ -56,7 +41,6 @@ export default async function Page({ params }: PageProps) {
           ← Volver
         </Link>
 
-        {/* Article content */}
         <article className="prose prose-invert prose-lg max-w-none space-y-6">
           <PortableText value={data.content} />
         </article>
