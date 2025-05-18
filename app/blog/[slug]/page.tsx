@@ -4,6 +4,12 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
+type BlogPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
 async function getData(slug: string) {
   const query = `
     *[_type == "blog" && slug.current == '${slug}'] {
@@ -20,10 +26,8 @@ async function getData(slug: string) {
 
 export default async function BlogArticle({
   params,
-}: {
-  params: { slug: string };
-}): Promise<JSX.Element> {
-  const data: fullBlog = await getData(params.slug);
+}: BlogPageProps): Promise<JSX.Element> {
+  const data = await getData(params.slug);
 
   return (
     <main className="bg-background text-foreground font-serif">
