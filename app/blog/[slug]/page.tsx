@@ -22,7 +22,7 @@ export default async function BlogArticle({
   params,
 }: {
   params: { slug: string };
-}) {
+}): Promise<JSX.Element> {
   const data: fullBlog = await getData(params.slug);
 
   return (
