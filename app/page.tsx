@@ -34,10 +34,10 @@ export default async function Home() {
             <Image
               src={urlFor(post.titleImage).width(1200).url()}
               alt={post.title}
-              width={1200}
+              width={1400}
               height={800}
               quality={90}
-              className="w-full h-[140px] md:w-[120px] md:h-full rounded-md object-cover"
+              className="w-full h-[140px] md:w-[180px] md:h-full rounded-md object-cover"
             />
 
             <div className="flex flex-col justify-between w-full font-[Georgia]">

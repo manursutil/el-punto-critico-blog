@@ -11,8 +11,13 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const query = `
+    *[_type == "blog" && slug.current == '${params.slug}']{
+      title
+    }[0]`;
+  const data = await client.fetch(query);
   return {
-    title: decodeURIComponent(params.slug),
+    title: data?.title || decodeURIComponent(params.slug),
   };
 }
 
